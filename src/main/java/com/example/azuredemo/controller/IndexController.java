@@ -16,7 +16,7 @@ public class IndexController {
      */
     @GetMapping
     public String index(){
-        return "AzureDemo::2143";
+        return "AzureDemo::2234";
     }
 
 }
