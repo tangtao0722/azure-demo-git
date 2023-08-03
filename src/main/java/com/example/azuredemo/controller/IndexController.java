@@ -16,7 +16,7 @@ public class IndexController {
      */
     @GetMapping
     public String index(){
-        return "AzureDemo::2234";
+        return "azure-demo-git::2234";
     }
 
 }
