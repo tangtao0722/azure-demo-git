@@ -45,6 +45,7 @@ public class IndexController {
                 System.out.println(result);
             }
         }catch (Exception e){
+            result="连接异常："+e.getMessage();
 
         }
         return result;
