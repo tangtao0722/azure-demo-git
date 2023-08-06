@@ -22,7 +22,7 @@ public class IndexController {
      */
     @GetMapping
     public String index(){
-        return "azure-demo-git::2305";
+        return "azure-demo-git::0806::0831";
     }
 
     @GetMapping("/demoMSI")
