@@ -22,7 +22,7 @@ public class IndexController {
      */
     @GetMapping
     public String index(){
-        return "azure-demo-git::0807::2253";
+        return "azure-demo-git::0807::2350";
     }
 
     @GetMapping("/demoMSI")
@@ -64,7 +64,7 @@ public class IndexController {
         // Replace with your database name
 //        dataSource.setDatabaseName("demo-re-sqldb");
 //        dataSource.setAuthentication("ActiveDirectoryManagedIdentity");
-        dataSource.setURL("jdbc:sqlserver://demo-rg-sqldb-server.database.windows.net:1433;database=demo-re-sqldb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;Authentication=ActiveDirectoryIntegrated");
+        dataSource.setURL("jdbc:sqlserver://demo-rg-sqldb-server.database.windows.net:1433;database=demo-re-sqldb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;Authentication=ActiveDirectoryManagedIdentity");
         try{
             Connection connection = dataSource.getConnection();
             Statement stmt = connection.createStatement();
