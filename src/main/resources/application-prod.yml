@@ -1,0 +1,13 @@
+spring:
+    datasource:
+        type: com.microsoft.sqlserver.jdbc.SQLServerDataSource
+        url: jdbc:sqlserver://demo-rg-sqldb-server.database.windows.net:1433;database=demo-re-sqldb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;Authentication=ActiveDirectoryPassword
+        username: aa
+        password: bb
+    redis:
+        host: qa-chinanorth3-limsmsg-redis.redis.cache.chinacloudapi.cn
+        password: bQpMQUwBqv7PpFkwwjnJ9hSZ5gjlWAKhMAzCaPjSE9M=
+        port: 6380
+        database: 0
+        ssl: true
+        abortConnect: false

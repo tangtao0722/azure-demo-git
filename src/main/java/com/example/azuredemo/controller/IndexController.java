@@ -1,6 +1,10 @@
 package com.example.azuredemo.controller;
 
+import com.example.azuredemo.mapper.SysUserMapper;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +19,11 @@ import java.sql.Statement;
  */
 @RestController
 public class IndexController {
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+    @Autowired
+    private SysUserMapper userMapper;
 
     /**
      *
@@ -60,10 +69,10 @@ public class IndexController {
         SQLServerDataSource dataSource = new SQLServerDataSource();
         // Replace with your server name
         //demo-rg-sqldb-server.database.windows.net
-//        dataSource.setServerName("demo-rg-sqldb-server.database.windows.net");
+        dataSource.setServerName("demo-rg-sqldb-server.database.windows.net");
         // Replace with your database name
 //        dataSource.setDatabaseName("demo-re-sqldb");
-//        dataSource.setAuthentication("ActiveDirectoryManagedIdentity");
+        dataSource.setAuthentication("ActiveDirectoryManagedIdentity");
         dataSource.setURL("jdbc:sqlserver://demo-rg-sqldb-server.database.windows.net:1433;database=demo-re-sqldb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;Authentication=ActiveDirectoryManagedIdentity");
         try{
             Connection connection = dataSource.getConnection();
@@ -79,6 +88,28 @@ public class IndexController {
         }
         return result;
     }
+
+    @GetMapping("/redis")
+    @ResponseBody
+    public String redis(){
+        ValueOperations ops = this.redisTemplate.opsForValue();
+        if(!this.redisTemplate.hasKey("name")){
+            ops.set("name","abc1");
+        }
+        String name = ops.get("name").toString();
+        return "IndexController::redis:name=".concat(name);
+    }
+
+
+//    @GetMapping("/users")
+//    @ResponseBody
+//    public List<SysUser> users(){
+//        List<SysUser> sysUsers = userMapper.selectList(Wrappers.lambdaQuery());
+//        return sysUsers;
+//    }
+
+
+
 }
 
 
