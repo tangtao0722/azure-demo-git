@@ -1,5 +1,7 @@
 package com.example.azuredemo.controller;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.example.azuredemo.domain.SysUser;
 import com.example.azuredemo.mapper.SysUserMapper;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 /**
  * 默认控制器
@@ -22,7 +26,7 @@ public class IndexController {
 
     @Autowired
     private RedisTemplate redisTemplate;
-    @Autowired
+    @Resource
     private SysUserMapper userMapper;
 
     /**
@@ -101,12 +105,12 @@ public class IndexController {
     }
 
 
-//    @GetMapping("/users")
-//    @ResponseBody
-//    public List<SysUser> users(){
-//        List<SysUser> sysUsers = userMapper.selectList(Wrappers.lambdaQuery());
-//        return sysUsers;
-//    }
+    @GetMapping("/users")
+    @ResponseBody
+    public List<SysUser> users(){
+        List<SysUser> sysUsers = userMapper.selectList(Wrappers.lambdaQuery());
+        return sysUsers;
+    }
 
 
 

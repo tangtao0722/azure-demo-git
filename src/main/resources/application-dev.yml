@@ -5,8 +5,8 @@ spring:
     url: jdbc:sqlserver://localhost:1433;DatabaseName=test;SelectMethod=cursor;allowPublicKeyRetrieval=true;trustServerCertificate=true
     username: sa
     password: 111111
-#  redis:
-#    host: localhost
-#    password: 111111
-#    port: 6379
-#    database: 0
+  redis:
+    host: localhost
+    password: 111111
+    port: 6379
+    database: 0
